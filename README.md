@@ -5,6 +5,8 @@ PHP script returning URL for twitter's image of user specified by parameter.
 
 # Installation
 
+First you need to create a Twitter app under https://apps.twitter.com/
+
 1. Rename twitter_config_sample.php to twitter_config.php and specify Twitter APP credentials.
 2. Deploy PHP files on a webserver of your choice.
 
