@@ -30,16 +30,19 @@
     $json = json_decode($response, true);
 
     /** Store downloaded profile url in cached */
-    $cached[$screen_name] = $json["profile_image_url"];
+    if (!$json["profile_image_url"]){
 
-    /** Remove _normal suffix to obtain bigger size **/
-    $json["profile_image_url"] = str_replace("_normal","",$json["profile_image_url"]);
+      header('HTTP/1.1 400 Bad Request');
 
-    /** Dump contents of the array in the cached file again */
-    file_put_contents($filename,$json["profile_image_url"]);
+    }else{
 
-    header("Content-type: text/plain; charset=utf-8");
-    echo $json["profile_image_url"];
+      $cached[$screen_name] = $json["profile_image_url"];
+      $json["profile_image_url"] = str_replace("_normal","",$json["profile_image_url"]);
+      file_put_contents($filename,$json["profile_image_url"]);
+
+      header("Content-type: text/plain; charset=utf-8");
+      echo $json["profile_image_url"];
+    }
 
   }
 
