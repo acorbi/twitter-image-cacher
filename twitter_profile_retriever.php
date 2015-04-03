@@ -4,6 +4,8 @@
   require_once('TwitterAPIExchange.php');
   require_once('config.php');
 
+  header('Access-Control-Allow-Origin: *');
+
   /** Get parameter */
   $screen_name = $_GET['screen_name'];
 
